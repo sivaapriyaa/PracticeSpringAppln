@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- Load the Properties file -->
+	<context:property-placeholder location="classpath:sport.properties"/>
+	<!-- add entry to enable component scanning -->
+
+	<!-- Define my beans -->
+	<!--  Define the dependency -->
+	<!-- <bean id="myFortune"
+		class="com.myspring.ioc.HappyFortuneService">
+		</bean> -->
+		<!--Creating bean for Random fortune service  -->
+		<bean id="myFortune"
+		class="com.myspring.ioc.RandomFortuneService">
+		</bean>
+	<bean id="myCoach"
+		class="com.myspring.ioc.TrackCoach">
+		<!-- Set up the constructor injection -->
+		<constructor-arg ref="myFortune" />
+		</bean>
+	<bean id="myHobbyCoach"
+		class="com.myspring.ioc.HobbyCoach">
+		<!-- Set up setter injection -->
+		<property name="fortuneService" ref="myFortune"></property>
+		<property name="emailAddress" value="${email}"/>
+		<property name="team" value="${team}"/>
+		</bean>	
+		
+		
+		
+		
+</beans>
+
+
+
+
+
